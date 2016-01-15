@@ -1,0 +1,31 @@
+{
+  "name": "basement-auth-local",
+  "version": "0.0.1",
+  "description": "passport local authentication for basement",
+  "main": "plugin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basement-js/basement-auth-local.git"
+  },
+  "keywords": [
+    "basement",
+    "passport",
+    "username",
+    "password",
+    "local",
+    "auth"
+  ],
+  "author": "alexrsagen",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/basement-js/basement-auth-local/issues"
+  },
+  "homepage": "https://github.com/basement-js/basement-auth-local#readme",
+  "dependencies": {
+    "bcrypt": "^0.8.5",
+    "passport-local": "^1.0.0"
+  }
+}
