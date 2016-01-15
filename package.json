@@ -18,7 +18,18 @@
     "local",
     "auth"
   ],
-  "author": "alexrsagen",
+  "author": "alexrsagen & Cyberuben",
+  "contributors": [
+    {
+      "name": "Ruben Rutten",
+      "email": "ruben@rubenrutten",
+      "url": "http://rubenrutten.nl/"
+    },
+    {
+      "name": "Alexander Sagen",
+      "email": "alexrsagen@gmail.com"
+    }
+  ],
   "license": "GPL-2.0",
   "bugs": {
     "url": "https://github.com/basement-js/basement-auth-local/issues"
