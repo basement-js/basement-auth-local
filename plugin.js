@@ -3,6 +3,11 @@ var LocalStrategy   = require("passport-local").Strategy;
 var bcrypt          = require("bcrypt");
 
 function LocalAuth(vars) {
+    this.info = {
+        name: "local",
+        prettyName: "Local transport"
+    };
+    
     // create default tables if they don't exist
     vars.knex.createTableIfNotExists("auth_local", function (table) {
         table.increments();
