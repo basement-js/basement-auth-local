@@ -9,7 +9,7 @@ function LocalAuth(vars) {
     };
     
     // create default tables if they don't exist
-    vars.knex.createTableIfNotExists("auth_local", function (table) {
+    vars.knex.schema.createTableIfNotExists("auth_local", function (table) {
         table.increments();
         table.string("email", 254).collate("utf8_unicode_ci");
         table.string("username", 32).collate("utf8_unicode_ci");
