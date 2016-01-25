@@ -9,11 +9,18 @@ function LocalAuth(vars) {
     };
     
     // create default tables if they don't exist
-    vars.knex.schema.createTableIfNotExists("auth_local", function (table) {
-        table.increments();
-        table.string("email", 254).collate("utf8_unicode_ci");
-        table.string("username", 32).collate("utf8_unicode_ci");
-        table.string("password").specificType("CHAR", 60).collate("latin1_bin");
+    vars.knex.schema.hasTable("auth_local")
+    .then(function (exists) {
+        if (!exists) {
+            return vars.knex.schema.createTable("auth_local", function (table) {
+                table.increments();
+                // uses a hacky way to collate until this gets merged:
+                // https://github.com/tgriesser/knex/pull/1147
+                table.string("email", 254).unique().notNullable().comment("' collate 'utf8_unicode_ci");
+                table.string("username", 32).unique().notNullable().comment("' collate 'utf8_unicode_ci");
+                table.specificType("password", "char(60)").notNullable().comment("' collate 'latin1_bin");
+            });
+        }
     });
 
     // get user model
@@ -24,7 +31,10 @@ function LocalAuth(vars) {
     var saltRounds = vars.config.get("plugins:auth:local:saltRounds") || 12;
 
     // register passport strategy
-    vars.passport.use("local_username", new LocalStrategy(
+    vars.passport.use("local_username", new LocalStrategy({
+            usernameField: 'username',
+            passwordField: 'password'
+        },
         function (username, password, done) {
             new User({username: username})
             .fetch({require: true})
